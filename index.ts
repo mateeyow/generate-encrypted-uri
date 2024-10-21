@@ -10,7 +10,7 @@ app.get('/', async (c) => {
   return c.text(encryptMessage);
 });
 
-const port = 3000;
+const port = 3333;
 console.log(`Server is running on port ${port}`);
 
 serve({
