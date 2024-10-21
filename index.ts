@@ -7,7 +7,7 @@ const app = new Hono();
 app.get('/', async (c) => {
   const email = c.req.query('email');
   const encryptMessage = await main(email);
-  return c.text(encryptMessage);
+  return c.text(`https://staging.helpbnk.io?e=${encryptMessage}`);
 });
 
 const port = 3333;
