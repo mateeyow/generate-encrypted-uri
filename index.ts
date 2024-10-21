@@ -6,7 +6,7 @@ const app = new Hono();
 
 app.get('/', async (c) => {
   const email = c.req.query('email');
-  const encryptMessage = await main(email);
+  const encryptMessage = await main(email?.replaceAll(' ', '+'));
   return c.text(`https://staging.helpbnk.terminal3.io?e=${encryptMessage}`);
 });
 
