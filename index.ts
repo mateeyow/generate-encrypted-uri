@@ -10,7 +10,7 @@ app.get('/', async (c) => {
   return c.text(`https://staging.helpbnk.terminal3.io?e=${encryptMessage}`);
 });
 
-const port = 3333;
+const port = 3000;
 console.log(`Server is running on port ${port}`);
 
 serve({
