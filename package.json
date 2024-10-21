@@ -1,0 +1,20 @@
+{
+  "name": "my-app",
+  "type": "module",
+  "scripts": {
+    "dev": "dotenv -- tsx watch index.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.0.3",
+    "@hono/node-server": "^1.13.2",
+    "@metamask/eth-sig-util": "^8.0.0",
+    "@terminal3/messaging_client": "^0.0.15",
+    "dotenv-cli": "^7.4.2",
+    "hono": "^4.6.5",
+    "jose": "^5.9.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1"
+  }
+}
