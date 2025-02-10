@@ -10,7 +10,12 @@ app.get('/', async (c) => {
   return c.text(`https://staging.helpbnk.terminal3.io?e=${encryptMessage}`);
 });
 
-const port = 3333;
+app.get('/auth/redirect', (c) => {
+  const params = c.req.query();
+  return c.text(`Redirecting... with params: ${JSON.stringify(params)}`);
+});
+
+const port = 3334;
 console.log(`Server is running on port ${port}`);
 
 serve({

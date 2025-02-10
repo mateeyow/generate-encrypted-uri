@@ -30,12 +30,16 @@ export async function main(mail?: string) {
 
   const t3PublicKey = getEncryptionPublicKey(t3PrivateKey);
   // enterprise ui
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  const username = (firstName + lastName).trim().toLocaleLowerCase();
+  console.log('username', username);
   const encryptedMsg = client.default.makeEncryptedMsg(
     JSON.stringify({
-      first_name: faker.person.firstName(),
-      last_name: faker.person.lastName(),
+      first_name: firstName,
+      last_name: lastName,
       email,
-      helpbnk_id: 'averyverylongstringforhelpbnkwithid.helpbnk',
+      helpbnk_id: `${username}.helpbnk`,
       jwt,
     }),
     t3PublicKey,
