@@ -2,7 +2,9 @@
   "name": "my-app",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -- tsx watch index.ts"
+    "dev": "dotenv -- tsx watch index.ts",
+    "start": "dotenv -- tsx watch index.ts",
+    "build": "echo 'success'"
   },
   "dependencies": {
     "@faker-js/faker": "^9.0.3",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.2"
   }
 }
