@@ -18,6 +18,11 @@ app.get('/auth/redirect', (c) => {
   return c.text(`Redirecting... with params: ${JSON.stringify(params)}`);
 });
 
+app.get('/error', (c) => {
+  c.status(400);
+  return c.json({ error: 'An error occurred' });
+});
+
 const port = 3334;
 console.log(`Server is running on port ${port}`);
 
