@@ -1,8 +1,11 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { main } from './generate.js';
+import { cors } from 'hono/cors';
 
 const app = new Hono();
+
+app.use('*', cors());
 
 app.get('/', async (c) => {
   const email = c.req.query('email');
