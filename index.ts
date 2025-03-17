@@ -18,7 +18,7 @@ app.get('/auth/redirect', (c) => {
   return c.text(`Redirecting... with params: ${JSON.stringify(params)}`);
 });
 
-app.get('/error', (c) => {
+app.get('/error-new', (c) => {
   c.status(400);
   return c.json({ error: 'An error occurred' });
 });
