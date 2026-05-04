@@ -1,5 +1,5 @@
 import { getEncryptionPublicKey } from "@metamask/eth-sig-util";
-import * as client from "@terminal3/messaging_client";
+import { makeEncryptedMsg } from "@terminal3/messaging_client";
 import { importPKCS8, importSPKI, SignJWT } from "jose";
 import { faker } from "@faker-js/faker";
 
@@ -34,7 +34,7 @@ export async function main(mail?: string) {
   const lastName = faker.person.lastName();
   const username = (firstName + lastName).trim().toLocaleLowerCase();
   console.log("username", username);
-  const encryptedMsg = client.default.makeEncryptedMsg(
+  const encryptedMsg = makeEncryptedMsg(
     JSON.stringify({
       first_name: firstName,
       last_name: lastName,

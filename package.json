@@ -1,6 +1,11 @@
 {
   "name": "my-app",
   "type": "module",
+  "pnpm": {
+    "patchedDependencies": {
+      "@terminal3/messaging_client@0.0.15": "patches/@terminal3__messaging_client@0.0.15.patch"
+    }
+  },
   "scripts": {
     "dev": "dotenv -- tsx watch server.ts",
     "start": "dotenv -- tsx server.ts",

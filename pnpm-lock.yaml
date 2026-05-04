@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@terminal3/messaging_client@0.0.15':
+    hash: 534279d890a83c3e0d10c87d848cd4eb5b86b3cacb2837254c3f4cc29333ca7b
+    path: patches/@terminal3__messaging_client@0.0.15.patch
+
 importers:
 
   .:
@@ -16,7 +21,7 @@ importers:
         version: 8.0.0
       '@terminal3/messaging_client':
         specifier: ^0.0.15
-        version: 0.0.15
+        version: 0.0.15(patch_hash=534279d890a83c3e0d10c87d848cd4eb5b86b3cacb2837254c3f4cc29333ca7b)
       dotenv-cli:
         specifier: ^7.4.2
         version: 7.4.2
@@ -691,7 +696,7 @@ snapshots:
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.9
 
-  '@terminal3/messaging_client@0.0.15':
+  '@terminal3/messaging_client@0.0.15(patch_hash=534279d890a83c3e0d10c87d848cd4eb5b86b3cacb2837254c3f4cc29333ca7b)':
     dependencies:
       '@terminal3/messaging_core': 0.0.7
       eth-sig-util: 3.0.1
