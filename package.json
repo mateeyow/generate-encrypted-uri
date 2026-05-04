@@ -2,13 +2,12 @@
   "name": "my-app",
   "type": "module",
   "scripts": {
-    "dev": "dotenv -- tsx watch index.ts",
-    "start": "dotenv -- tsx watch index.ts",
-    "build": "echo 'success'"
+    "dev": "dotenv -- tsx watch server.ts",
+    "start": "dotenv -- tsx server.ts",
+    "build": "echo success"
   },
   "dependencies": {
     "@faker-js/faker": "^9.0.3",
-    "@hono/node-server": "^1.13.2",
     "@metamask/eth-sig-util": "^8.0.0",
     "@terminal3/messaging_client": "^0.0.15",
     "dotenv-cli": "^7.4.2",
@@ -16,6 +15,7 @@
     "jose": "^5.9.6"
   },
   "devDependencies": {
+    "@hono/node-server": "^1.13.2",
     "@types/node": "^20.11.17",
     "tsx": "^4.7.1",
     "typescript": "^5.8.2"

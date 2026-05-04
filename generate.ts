@@ -1,31 +1,31 @@
-import { getEncryptionPublicKey } from '@metamask/eth-sig-util';
-import * as client from '@terminal3/messaging_client';
-import { importPKCS8, importSPKI, SignJWT } from 'jose';
-import { faker } from '@faker-js/faker';
+import { getEncryptionPublicKey } from "@metamask/eth-sig-util";
+import * as client from "@terminal3/messaging_client";
+import { importPKCS8, importSPKI, SignJWT } from "jose";
+import { faker } from "@faker-js/faker";
 
-const t3PrivateKey = process.env.T3_PRIVATE_KEY ?? '';
-const HB_ENTERPRISE_PRIVATE_KEY = process.env.HB_ENTERPRISE_PRIVATE_KEY ?? '';
-const HB_ENTERPRISE_PUBLIC_KEY = process.env.HB_ENTERPRISE_PUBLIC_KEY ?? '';
+const t3PrivateKey = process.env.T3_PRIVATE_KEY ?? "";
+const HB_ENTERPRISE_PRIVATE_KEY = process.env.HB_ENTERPRISE_PRIVATE_KEY ?? "";
+const HB_ENTERPRISE_PUBLIC_KEY = process.env.HB_ENTERPRISE_PUBLIC_KEY ?? "";
 
 export async function main(mail?: string) {
   const email = mail || faker.internet.email().toLowerCase();
-  console.log('email', email);
-  const alg = 'EdDSA';
+  console.log("email", email);
+  const alg = "EdDSA";
   // const keyPair = await generateKeyPair(alg);
   const enterprisePrivateKey = await importPKCS8(
-    (HB_ENTERPRISE_PRIVATE_KEY || '').replaceAll('\\n', '\n'),
-    alg,
+    (HB_ENTERPRISE_PRIVATE_KEY || "").replaceAll("\\n", "\n"),
+    alg
   );
   const enterprisePublicKey = await importSPKI(
-    HB_ENTERPRISE_PUBLIC_KEY.replaceAll('\\n', '\n'),
-    alg,
+    HB_ENTERPRISE_PUBLIC_KEY.replaceAll("\\n", "\n"),
+    alg
   );
 
   // enterprise server. A JWT with no claims
   const jwt = await new SignJWT({})
     .setProtectedHeader({ alg })
     .setIssuedAt()
-    .setExpirationTime('10000s')
+    .setExpirationTime("10000s")
     .sign(enterprisePrivateKey);
 
   const t3PublicKey = getEncryptionPublicKey(t3PrivateKey);
@@ -33,17 +33,18 @@ export async function main(mail?: string) {
   const firstName = faker.person.firstName();
   const lastName = faker.person.lastName();
   const username = (firstName + lastName).trim().toLocaleLowerCase();
-  console.log('username', username);
+  console.log("username", username);
   const encryptedMsg = client.default.makeEncryptedMsg(
     JSON.stringify({
       first_name: firstName,
       last_name: lastName,
       email,
+      birthdate: null,
       helpbnk_id: `${username}.helpbnk`,
       jwt,
     }),
     t3PublicKey,
-    false,
+    false
   );
 
   return encodeURIComponent(JSON.stringify(encryptedMsg));
